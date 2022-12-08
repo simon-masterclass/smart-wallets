@@ -1,6 +1,7 @@
 //SPDX-License-Identifier: MIT
 
-/// @author simon-masterclass (github username)
+/// @author @TomsCourses (youtube channel)
+/// @author simon-masterclass (github username) = SGI
 
 pragma solidity 0.8.15;
 
@@ -11,11 +12,13 @@ contract WalletWithGuardians {
     mapping(address => uint256) public allowance;
     mapping(address => bool) public isAllowedToSend;
 
+    //Struct contains data necessary to ensure 3/5 votes don't get double counted. -SGI
     struct guardianData {
         bool isGuardian;
         uint8 index_arrayTF;
     }
 
+    //Array of bools to enable tracking who has and hasn't voted. -SGI
     bool[5] guardianVotedTF;
 
     mapping(address => guardianData) public guardians;
@@ -26,6 +29,7 @@ contract WalletWithGuardians {
         owner = payable(msg.sender);
     }
 
+    //Function for resettinng all bools back to False after voting. -SGI
     function resetVotedTFarray() internal {
         for (uint8 i = 0; i < 5; i++) {
             guardianVotedTF[i] = false;
@@ -40,19 +44,23 @@ contract WalletWithGuardians {
         if (nextOwner != newOwner) {
             nextOwner = newOwner;
             guardiansResetCount = 0;
+            //reset voting bools to False after a new candidate is proposed. -SGI
             resetVotedTFarray();
         }
+        //Require guardians to have NOT voted before. -SGI
         require(
             guardianVotedTF[guardians[msg.sender].index_arrayTF] == false,
             "You have already voted, aborting."
         );
 
         guardiansResetCount++;
+        //This array of T/F values guards against double voting using the require statement above -SGI
         guardianVotedTF[guardians[msg.sender].index_arrayTF] = true;
 
         if (guardiansResetCount >= confirmationsFromGuardiansForReset) {
             owner = nextOwner;
             nextOwner = payable(address(0));
+            //reset voting bools -SGI
             resetVotedTFarray();
         }
     }
