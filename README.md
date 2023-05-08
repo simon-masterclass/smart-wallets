@@ -2,4 +2,4 @@
 
 # Smart Wallet
 
-playing with smart wallet code.
+Playing with smart wallet code. come & deposit your billions here!
