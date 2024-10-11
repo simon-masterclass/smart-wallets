@@ -24,14 +24,14 @@ Multi-Signatute Wallets allow a wallet to be controlled by more than 1 owner. In
     - Call functions => getOwners, getTransaction, getTransactionCount, isConfirmed, owners, transactions etc
     - Transacting functions => submiTransaction, confirmTransaction, executeTransaction, revokeTransaction
 
-1. Deploy Token to Kovan Testnet
+1. Deploy Token to Sepolia Testnet
 
 - Select Deploy and Run Transactions Page
   - Environment dropdown select Injected Web3 (to allow use of Metamask)
   - Accounts dropdwon will have first currently selected Metamask account
-- Get some testnet ETH, Kovan ETH into the deploying account 
+- Get some testnet ETH, Sepolia ETH into the deploying account 
   - Copy the address from accounts 
-  - Go to [https://linkfaucet.protofire.io/kovan](https://linkfaucet.protofire.io/kovan) paste account and request some Kovan ETH
+  - Go to [Sepolia faucet]() paste account and request some Kovan ETH
 - Deploy Button
   - Enter the parameters for deployment for
     - For _OWNERS use an array of addresses e.g first 3 addresses in Account dropdown e.g => ["0x5B38Da6a701c568545dCfcB03FcB875f56beddC4","0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2","0xCA35b7d915458EF540aDe6068dFe2F44E8fa733c"]
